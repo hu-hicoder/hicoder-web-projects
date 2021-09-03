@@ -1,0 +1,169 @@
+/******************************************************************
+
+Media queries
+
+******************************************************************/
+
+/********** XX-Small (less than 350px) **********/
+@media (max-width: 350px) {
+    .container {
+        padding-left: $mb-1;
+        padding-right: $mb-1;
+    }
+
+    .header {
+        &__title {
+            display: none;
+        }
+    }
+}
+
+/********** Small (landscape phones, 576px and up) **********/
+@media (min-width: 576px) {
+    .hero {
+        height: 780px;
+    }
+
+    .news {
+        &__wrapper {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .recruitment {
+        &__container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+/********** Medium (tablets, 768px and up) **********/
+@media (min-width: 768px) {
+    .main,
+    .footer {
+        padding-left: $mb-3;
+        padding-right: $mb-3;
+    }
+
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .header {
+        &__container {
+            width: 95%;
+            margin: 0 auto;
+        }
+    }
+
+    .section {
+        padding: 2rem 0 4.5rem;
+    }
+
+    .hero {
+        height: 660px;
+        margin-bottom: 3rem;
+    }
+
+    .about {
+        &__wrapper {
+            grid-template-columns: 1fr 2fr;
+        }
+    }
+
+    .news {
+        &__wrapper {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .recruitment {
+        &__bg {
+            background: none;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        &__container {
+            background-color: $first-color;
+            border-radius: 1rem;
+            padding: 3rem 2.5rem;
+            grid-template-columns: 1fr max-content;
+            align-items: center;
+        }
+        &__content {
+            align-items: flex-start;
+        }
+        &__head,
+        &__description {
+            text-align: left;
+        }
+    }
+
+    .footer {
+        margin-top: 4rem;
+    }
+}
+
+/********** Large (desktops, 992px and up) **********/
+@media (min-width: 992px) {
+    .header {
+        height: $header-height-pc;
+
+        &__image {
+            width: 43px;
+        }
+        &__title {
+            display: block;
+            width: 100px;
+        }
+        &__nav {
+            z-index: auto;
+            position: static;
+            top: auto;
+            right: auto;
+            width: auto;
+            height: auto;
+            background-color: transparent;
+            transition: none;
+        }
+        &__ul {
+            flex-direction: row;
+            position: static;
+            top: auto;
+            left: auto;
+            transform: none;
+            z-index: auto;
+        }
+        &__btn {
+            display: none;
+        }
+    }
+
+    .hero {
+        padding-top: $header-height-pc;
+    }
+
+    .recruitment {
+        &__container {
+            grid-template-columns: repeat(2, max-content);
+            justify-content: center;
+        }
+    }
+}
+
+/********** X-Large (large desktops, 1200px and up) **********/
+@media (min-width: 1200px) {
+    .main,
+    .footer {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/********** XX-Large (larger desktops, 1400px and up) **********/
+@media (min-width: 1400px) {
+    .hero {
+        height: 750px;
+    }
+}

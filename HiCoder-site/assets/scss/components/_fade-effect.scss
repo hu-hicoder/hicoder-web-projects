@@ -1,0 +1,39 @@
+/******************************************************************
+
+Fade effect
+
+******************************************************************/
+
+$pattern: (
+    "up": translateY(8px),
+    "down": translateY(-8px),
+    "left": translateX(40px),
+    "right": translateX(-40px),
+);
+
+@each $key, $value in $pattern {
+    .fade.#{$key} {
+        & .item {
+            transform: $value;
+        }
+    }
+}
+
+.fade {
+    & .item {
+        transition: transform 0.8s, opacity 0.8s;
+        opacity: 0;
+    }
+    &.inview {
+        & .item {
+            opacity: 1;
+            transform: none;
+
+            @for $i from 1 through 10 {
+                &:nth-child(#{$i}) {
+                    transition-delay: $i * 0.1s;
+                }
+            }
+        }
+    }
+}

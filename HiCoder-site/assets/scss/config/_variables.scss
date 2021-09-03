@@ -1,0 +1,51 @@
+/******************************************************************
+
+Variables
+
+******************************************************************/
+
+$header-height-sp: 4rem;
+$header-height-pc: 5rem;
+
+/********** Colors **********/
+$first-color: hsl(187, 60%, 51%);
+$first-color-alt: hsl(187, 51%, 43%);
+$first-color-lighter: hsl(187, 92%, 85%);
+$title-color: hsl(187, 8%, 15%);
+$text-color: hsl(187, 8%, 35%);
+$text-color-light: hsl(187, 8%, 65%);
+$input-color: hsl(187, 70%, 93%);
+$body-color: hsl(187, 60%, 98%);
+$border-color: hsl(187, 9%, 82%);
+$container-color: #fff;
+
+/********** Font **********/
+$body-font: "Lato", "Noto Sans JP", "Hiragino Sans", "ヒラギノ角ゴシック",
+    "YuGothic", "Yu Gothic", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック",
+    "MS PGothic", sans-serif;
+
+/********** Font size **********/
+$font-sm: 0.75rem;
+$font-md: 0.938rem;
+$font-lg: 1.25rem;
+$font-xl: 1.75rem;
+
+/********** Font weight **********/
+$font-regular: 400;
+$font-bold: 700;
+
+/********** Margin bottom **********/
+$mb-0-25: 0.25rem;
+$mb-0-5: 0.5rem;
+$mb-0-75: 0.75rem;
+$mb-1: 1rem;
+$mb-1-5: 1.5rem;
+$mb-2: 2rem;
+$mb-2-5: 2.5rem;
+$mb-3: 3rem;
+
+/********** Z index **********/
+$z-scrollup: 10;
+$z-header: 100;
+$z-sidemenu: 1000;
+$z-header-btn: 10000;
