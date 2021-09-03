@@ -1,4 +1,3 @@
-# project-template
-HiCoderでリポジトリを作るときのテンプレート
+# hicoder-web-projects
 
-releaseブランチにpushしたらOnePaaS通知が飛ぶ
+> The official website of HiCoder
