@@ -1,0 +1,4 @@
+# project-template
+HiCoderでリポジトリを作るときのテンプレート
+
+releaseブランチにpushしたらOnePaaS通知が飛ぶ
