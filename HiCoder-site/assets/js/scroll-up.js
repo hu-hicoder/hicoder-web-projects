@@ -22,22 +22,22 @@ class ScrollUp {
         });
     }
 
-    _stickScrollUp() {
-        const scrollCount =
-            document.documentElement.scrollTop || document.body.scrollTop;
-        const scrollPos = document.documentElement.clientHeight + scrollCount;
-        if (this.docHeight - scrollPos <= this.footerHeight) {
-            this.DOM.scrollUp.style.position = "absolute";
-            this.DOM.scrollUp.style.bottom = this.footerHeight + 20 + "px";
-        } else {
-            this.DOM.scrollUp.style.position = "fixed";
-            this.DOM.scrollUp.style.bottom = 20 + "px";
-        }
-    }
+    // _stickScrollUp() {
+    //     const scrollCount =
+    //         document.documentElement.scrollTop || document.body.scrollTop;
+    //     const scrollPos = document.documentElement.clientHeight + scrollCount;
+    //     if (this.docHeight - scrollPos <= this.footerHeight) {
+    //         this.DOM.scrollUp.style.position = "absolute";
+    //         this.DOM.scrollUp.style.bottom = this.footerHeight + 20 + "px";
+    //     } else {
+    //         this.DOM.scrollUp.style.position = "fixed";
+    //         this.DOM.scrollUp.style.bottom = 20 + "px";
+    //     }
+    // }
 
     _addEvent() {
         window.addEventListener("scroll", this._showScrollUp.bind(this));
         this.DOM.scrollUp.addEventListener("click", this._scrollTo);
-        window.addEventListener("scroll", this._stickScrollUp.bind(this));
+        // window.addEventListener("scroll", this._stickScrollUp.bind(this));
     }
 }
