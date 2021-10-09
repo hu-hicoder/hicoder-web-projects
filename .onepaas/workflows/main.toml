@@ -1,5 +1,0 @@
-[app]
-name = "sample"
-url = "repo.username.hicoder.one" # repo.username.hicoder.one
-type = "bot/discord" # bot | website
-repo = "."
