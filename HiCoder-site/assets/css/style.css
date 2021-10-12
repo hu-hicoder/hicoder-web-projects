@@ -151,6 +151,16 @@ img {
   line-height: 2;
 }
 
+.text-link {
+  color: #37bccd;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+.text-link:hover {
+  color: #3699a6;
+}
+
 /********** Header **********/
 .header {
   width: 100%;

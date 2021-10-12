@@ -112,6 +112,14 @@ img {
         line-height: 2;
     }
 }
+.text-link {
+    color: $first-color;
+    transition: color 0.3s;
+
+    &:hover {
+        color: $first-color-alt;
+    }
+}
 
 /********** Header **********/
 .header {
