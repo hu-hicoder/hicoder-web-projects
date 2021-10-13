@@ -29,9 +29,15 @@ Media queries
             grid-template-columns: repeat(2, 1fr);
         }
     }
-
+    
     .recruitment {
         &__container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .contact {
+        &__wrapper {
             grid-template-columns: repeat(2, 1fr);
         }
     }
@@ -99,6 +105,13 @@ Media queries
             text-align: left;
         }
     }
+
+    .contact {
+        &__item {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
 }
 
 /********** Large (desktops, 992px and up) **********/
@@ -144,6 +157,15 @@ Media queries
         &__container {
             grid-template-columns: repeat(2, max-content);
             justify-content: center;
+        }
+    }
+
+    .contact {
+        &__wrapper {
+            gap: 2rem;
+        }
+        &__item {
+            padding: 3rem 2.5rem;
         }
     }
 }

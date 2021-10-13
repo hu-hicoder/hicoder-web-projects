@@ -56,7 +56,7 @@ img {
   vertical-align: top;
 }
 
-.flex, .header__ul, .about__container, .news__container, .recruitment__content, .faq__container, .faq__wrapper, .contact__container {
+.flex, .header__ul, .about__container, .news__container, .recruitment__content, .faq__container, .faq__wrapper, .contact__container, .contact__item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -66,7 +66,7 @@ img {
           flex-direction: column;
 }
 
-.grid, .about__wrapper, .news__wrapper, .news__item, .recruitment__container, .faq__question, .faq__answer__inner, .contact__form {
+.grid, .about__wrapper, .news__wrapper, .news__item, .recruitment__container, .faq__question, .faq__answer__inner, .contact__wrapper {
   display: -ms-grid;
   display: grid;
   gap: 1.5rem;
@@ -141,13 +141,13 @@ img {
   text-align: center;
 }
 
-.section__head, .about__head, .recruitment__head {
+.section__head, .about__head, .recruitment__head, .contact__head {
   font-size: 1.25rem;
   line-height: 1.6;
   margin-bottom: 0.75rem;
 }
 
-.section__description, .about__description, .news__description, .recruitment__description, .faq__description {
+.section__description, .about__description, .news__description, .recruitment__description, .faq__description, .contact__description {
   line-height: 2;
 }
 
@@ -526,31 +526,23 @@ img {
           align-items: center;
 }
 
-.contact__form {
-  width: 100%;
-  max-width: 768px;
+.contact__item {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fff;
+  padding: 2.5rem 1.5rem;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.contact__description {
   margin-bottom: 2rem;
 }
 
-.contact__field {
-  background-color: #e1f7fa;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem 0.25rem;
-}
-
-.contact__label {
-  font-size: 0.75rem;
-  color: #232929;
-}
-
-.contact__input {
-  width: 100%;
-  background-color: #e1f7fa;
-  color: #525f60;
-  font-size: 0.938rem;
-  border: none;
-  outline: none;
-  padding: 0.25rem 0.5rem 0.5rem 0;
+.contact__button {
+  margin-top: auto;
 }
 
 /********** Scroll top **********/
@@ -734,6 +726,10 @@ Media queries
     -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr);
   }
+  .contact__wrapper {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /********** Medium (tablets, 768px and up) **********/
@@ -790,6 +786,10 @@ Media queries
   .recruitment__head, .recruitment__description {
     text-align: left;
   }
+  .contact__item {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 /********** Large (desktops, 992px and up) **********/
@@ -840,6 +840,12 @@ Media queries
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+  }
+  .contact__wrapper {
+    gap: 2rem;
+  }
+  .contact__item {
+    padding: 3rem 2.5rem;
   }
 }
 
