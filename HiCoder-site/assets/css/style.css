@@ -844,9 +844,6 @@ Media queries
   .contact__wrapper {
     gap: 2rem;
   }
-  .contact__item {
-    padding: 3rem 2.5rem;
-  }
 }
 
 /********** X-Large (large desktops, 1200px and up) **********/
