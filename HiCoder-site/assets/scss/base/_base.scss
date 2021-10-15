@@ -496,9 +496,19 @@ img {
     &__head {
         @extend .section__head;
     }
+    &__mailaddress {
+        font-size: 1.4rem;
+        font-weight: $font-bold;
+        margin-bottom: $mb-0-5;
+    }
     &__description {
         @extend .section__description;
         margin-bottom: $mb-2;
+
+        &-last {
+            @extend .contact__description;
+            margin-bottom: 0;
+        }
     }
     &__button {
         @extend .button;

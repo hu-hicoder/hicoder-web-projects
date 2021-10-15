@@ -40,6 +40,11 @@ Media queries
         &__wrapper {
             grid-template-columns: repeat(2, 1fr);
         }
+        &__item {
+            &:nth-child(3) {
+                grid-column: 1/3;
+            }
+        }
     }
 }
 
