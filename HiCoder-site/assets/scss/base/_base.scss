@@ -557,9 +557,9 @@ img {
     z-index: $z-scrollup;
     background-color: $first-color;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
-    border-radius: 0.4rem;
+    border-radius: 0.6rem;
     transition: all 0.3s;
-    padding: 0.4rem 0.5rem;
+    padding: 0.7rem 0.8rem;
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
@@ -569,7 +569,7 @@ img {
     }
 
     &__icon {
-        font-size: $font-md;
+        font-size: 1rem;
         color: #fff;
     }
 }
