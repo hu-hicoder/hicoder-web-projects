@@ -358,7 +358,6 @@ img {
 
 .about__image {
   width: 100%;
-  max-width: 576px;
   border-radius: 0.5rem;
   -ms-grid-column-align: center;
       justify-self: center;
