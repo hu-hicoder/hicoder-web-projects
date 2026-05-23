@@ -4,10 +4,30 @@
 
 ## Overview
 
-Responsive website using HTML, CSS(Sass) and JavaScript. It contains a Header, About, News, Faq, Contact and Footer.
+Responsive single-page website for HiCoder — Hiroshima University's computer science circle.
+Contains Header, About, News, Recruitment, FAQ, Contact and Footer.
 
-## Languages
+## Stack
 
-- HTML
-- Sass
-- JavaScript
+- [Next.js](https://nextjs.org/) (App Router, static export)
+- [Tailwind CSS](https://tailwindcss.com/)
+- TypeScript
+- [Swiper](https://swiperjs.com/) — hero slideshow
+- [Font Awesome](https://fontawesome.com/) — icons via `@fortawesome/react-fontawesome`
+
+## Getting Started
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Build (static export)
+
+```bash
+pnpm build
+```
+
+Static files are output to `out/`.
