@@ -14,7 +14,7 @@ export default function Footer() {
           height={36}
           className="-translate-y-[3px]"
         />
-        <p className="text-sm">&copy; 2026 HiCoder</p>
+        <p className="text-sm">&copy; {new Date().getFullYear()} HiCoder</p>
       </div>
     </footer>
   );

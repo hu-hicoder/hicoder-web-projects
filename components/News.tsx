@@ -54,7 +54,7 @@ export default function News() {
           href="https://blog.hicoder.one/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center px-6 py-4 bg-first font-bold text-white rounded-lg transition-all duration-300 hover:bg-first-alt"
+          className="flex w-full justify-center items-center px-6 py-4 bg-first font-bold text-white rounded-lg transition-all duration-300 hover:bg-first-alt"
         >
           もっと見る
         </a>
