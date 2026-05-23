@@ -10,6 +10,7 @@ const navLinks = [
   { href: '#news', label: 'NEWS' },
   { href: '#faq', label: 'FAQ' },
   { href: '#contact', label: 'CONTACT' },
+  { href: 'https://blog.hicoder.one/', label: 'BLOG' },
 ];
 
 export default function Header() {
