@@ -1,9 +1,16 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Reveal from './Reveal';
-import { fetchBlogPosts } from '@/lib/blog';
+import { fetchBlogPosts, type BlogPost } from '@/lib/blog';
 
-export default async function News() {
-  const posts = await fetchBlogPosts(3);
+export default function News() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    fetchBlogPosts(3).then(setPosts);
+  }, []);
 
   return (
     <section className="py-8 pb-16 md:pb-[4.5rem]" id="news">
