@@ -1,7 +1,6 @@
 'use client';
 
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaArrowUp } from 'react-icons/fa6';
 import { useEffect, useState } from 'react';
 
 export default function ScrollTop() {
@@ -26,7 +25,7 @@ export default function ScrollTop() {
       style={{ width: 'fit-content' }}
       aria-label="トップへ戻る"
     >
-      <FontAwesomeIcon icon={faArrowUp} className="text-base text-white" />
+      <FaArrowUp className="text-base text-white" />
     </button>
   );
 }

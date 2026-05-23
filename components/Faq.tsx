@@ -1,7 +1,6 @@
 'use client';
 
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaAngleDown } from 'react-icons/fa6';
 import { useState } from 'react';
 import Reveal from './Reveal';
 
@@ -38,8 +37,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
       >
         <span className="font-bold leading-[2]">Q</span>
         <h4 className="text-md text-text-main font-bold leading-[2]">{q}</h4>
-        <FontAwesomeIcon
-          icon={faAngleDown}
+        <FaAngleDown
           className="text-xl text-first justify-self-end self-center transition-transform duration-300"
           style={{ transform: open ? 'rotate(180deg)' : undefined }}
         />

@@ -1,7 +1,6 @@
 'use client';
 
-import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaGithub, FaXTwitter } from 'react-icons/fa6';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -73,10 +72,7 @@ export default function Header() {
                 rel="noopener noreferrer"
                 onClick={close}
               >
-                <FontAwesomeIcon
-                  icon={faTwitter}
-                  className="text-lg text-title hover:text-first transition-colors duration-300"
-                />
+                <FaXTwitter className="text-lg text-title hover:text-first transition-colors duration-300" />
               </a>
               <a
                 href="https://github.com/hu-hicoder"
@@ -84,10 +80,7 @@ export default function Header() {
                 rel="noopener noreferrer"
                 onClick={close}
               >
-                <FontAwesomeIcon
-                  icon={faGithub}
-                  className="text-lg text-title hover:text-first transition-colors duration-300"
-                />
+                <FaGithub className="text-lg text-title hover:text-first transition-colors duration-300" />
               </a>
             </li>
           </ul>
