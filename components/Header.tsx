@@ -20,7 +20,7 @@ export default function Header() {
 
   return (
     <header className="w-full h-16 lg:h-20 fixed top-0 left-0 right-0 z-[100] bg-body shadow-[0_6px_9px_-4px_rgba(10,10,10,0.15)]">
-      <div className="container-inner h-full flex justify-between items-center px-6 lg:w-[95%] lg:mx-auto">
+      <div className="container-inner h-full flex justify-between items-center px-6 lg:w-[95%] lg:mx-auto lg:pl-0 lg:pr-0">
         {/* Logo */}
         <h1 className="flex items-center gap-2">
           <Image src="/assets/img/logo-1.png" alt="" width={34} height={34} className="lg:w-[43px]" />
