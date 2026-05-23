@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { type BlogPost, fetchBlogPosts } from '@/lib/blog';
 import Reveal from './Reveal';
-import { fetchBlogPosts, type BlogPost } from '@/lib/blog';
 
 export default function News() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -14,19 +14,16 @@ export default function News() {
 
   return (
     <section className="py-8 pb-16 md:pb-[4.5rem]" id="news">
-      <Reveal
-        direction="up"
-        className="max-w-container mx-auto px-6 md:px-0 flex flex-col"
-      >
+      <Reveal direction="up" className="max-w-container mx-auto px-6 md:px-0 flex flex-col">
         <h2 className="section-title relative text-xl font-bold text-center tracking-[0.05em] mb-6">
           NEWS
         </h2>
         <span className="block text-sm text-center mb-12">最新のお知らせ</span>
         {posts.length > 0 && (
           <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 mb-8">
-            {posts.map((post, i) => (
+            {posts.map((post) => (
               <a
-                key={i}
+                key={post.url}
                 href={post.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -42,9 +39,7 @@ export default function News() {
                 <div className="grid gap-2 p-6">
                   <span className="block text-text-light">{post.date}</span>
                   <span className="block font-bold leading-snug">{post.title}</span>
-                  {post.description && (
-                    <p className="leading-[2] text-sm">{post.description}</p>
-                  )}
+                  {post.description && <p className="leading-[2] text-sm">{post.description}</p>}
                 </div>
               </a>
             ))}

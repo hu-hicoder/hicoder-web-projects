@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, Children } from 'react';
+import { Children, type ReactElement, useEffect, useRef, useState } from 'react';
 
 type Direction = 'up' | 'down' | 'left' | 'right';
 
@@ -31,7 +31,7 @@ export default function Reveal({ direction, children, className }: Props) {
           observer.unobserve(el);
         }
       },
-      { threshold: 0 }
+      { threshold: 0 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -43,17 +43,13 @@ export default function Reveal({ direction, children, className }: Props) {
     <div ref={ref} className={className}>
       {items.map((child, i) => (
         <div
-          key={i}
+          key={(child as ReactElement).key ?? i}
           className="w-full"
           style={{
             transition: 'transform 0.8s, opacity 0.8s',
             transitionDelay: `${(i + 1) * 0.1}s`,
             opacity: inview ? 1 : 0,
-            transform: inview
-              ? 'none'
-              : direction
-              ? initialTransform[direction]
-              : undefined,
+            transform: inview ? 'none' : direction ? initialTransform[direction] : undefined,
           }}
         >
           {child}

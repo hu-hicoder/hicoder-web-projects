@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.ts";
 
 @layer base {
   html {
@@ -11,7 +10,10 @@
     @apply bg-body text-text-main text-md font-sans;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply text-title font-bold m-0;
   }
 
@@ -19,7 +21,9 @@
     margin: 0;
   }
 
-  ul, ol, dl {
+  ul,
+  ol,
+  dl {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -66,7 +70,7 @@
 
 /* Section title underline */
 .section-title::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -0.75rem;
   left: 50%;
@@ -80,7 +84,9 @@
 
 /* Reveal fade animations */
 .reveal-item {
-  transition: transform 0.8s, opacity 0.8s;
+  transition:
+    transform 0.8s,
+    opacity 0.8s;
   opacity: 0;
 }
 .reveal-item.inview {

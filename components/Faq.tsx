@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
 import Reveal from './Reveal';
 
 const faqs = [
@@ -30,6 +30,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
   return (
     <div className="w-full border-b border-border first:border-t">
       <button
+        type="button"
         className="grid gap-x-3 w-full text-left py-8 px-4 cursor-pointer"
         style={{ gridTemplateColumns: '0.75rem auto 1.25rem' }}
         onClick={() => setOpen((v) => !v)}
@@ -69,8 +70,8 @@ export default function Faq() {
         <span className="block text-sm text-center mb-12">よくあるご質問</span>
         <div className="flex flex-col items-center w-full">
           <div className="w-full max-w-[768px]">
-            {faqs.map((item, i) => (
-              <FaqItem key={i} {...item} />
+            {faqs.map((item) => (
+              <FaqItem key={item.q} {...item} />
             ))}
           </div>
         </div>

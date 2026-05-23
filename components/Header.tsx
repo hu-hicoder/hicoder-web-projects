@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
+import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
+import Image from 'next/image';
+import { useState } from 'react';
 
 const navLinks = [
   { href: '#about', label: 'ABOUT' },
@@ -23,13 +23,21 @@ export default function Header() {
       <div className="container-inner h-full flex justify-between items-center px-6 lg:w-[95%] lg:mx-auto lg:pl-0 lg:pr-0">
         {/* Logo */}
         <h1 className="flex items-center gap-2">
-          <Image src="/assets/img/logo-1.png" alt="" width={34} height={34} className="lg:w-[43px]" />
+          <Image
+            src="/assets/img/logo-1.png"
+            alt=""
+            width={34}
+            height={34}
+            className="lg:w-[43px] h-auto"
+            priority
+          />
           <Image
             src="/assets/img/logo-2.png"
             alt="HiCoder"
             width={80}
             height={24}
-            className="header-title-logo lg:w-[100px]"
+            className="header-title-logo lg:w-[100px] h-auto"
+            priority
           />
         </h1>
 
@@ -87,13 +95,14 @@ export default function Header() {
 
         {/* Hamburger */}
         <button
+          type="button"
           className="relative z-[10000] bg-transparent border-none outline-none cursor-pointer lg:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="メニュー"
         >
-          {[0, 1, 2].map((i) => (
+          {(['top', 'mid', 'bot'] as const).map((name, i) => (
             <span
-              key={i}
+              key={name}
               className="block w-6 bg-title mb-1.5 last:mb-0 transition-transform duration-500"
               style={{
                 height: '1.6px',
@@ -101,16 +110,10 @@ export default function Header() {
                   ? i === 0
                     ? 'translateY(7.6px) rotate(135deg)'
                     : i === 1
-                    ? 'translateX(-12px) scaleX(0)'
-                    : 'translateY(-7.6px) rotate(-135deg)'
+                      ? 'translateX(-12px) scaleX(0)'
+                      : 'translateY(-7.6px) rotate(-135deg)'
                   : undefined,
-                transitionDelay: open
-                  ? i === 0
-                    ? '70ms'
-                    : i === 1
-                    ? '0ms'
-                    : '140ms'
-                  : undefined,
+                transitionDelay: open ? (i === 0 ? '70ms' : i === 1 ? '0ms' : '140ms') : undefined,
               }}
             />
           ))}

@@ -4,10 +4,7 @@ import Reveal from './Reveal';
 export default function About() {
   return (
     <section className="py-8 pb-16 md:pb-[4.5rem]" id="about">
-      <Reveal
-        direction="up"
-        className="max-w-container mx-auto px-6 md:px-0 flex flex-col"
-      >
+      <Reveal direction="up" className="max-w-container mx-auto px-6 md:px-0 flex flex-col">
         <h2 className="section-title relative text-xl font-bold text-center tracking-[0.05em] mb-6">
           ABOUT
         </h2>

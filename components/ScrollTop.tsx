@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect, useState } from 'react';
 
 export default function ScrollTop() {
   const [visible, setVisible] = useState(false);
@@ -14,7 +14,8 @@ export default function ScrollTop() {
   }, []);
 
   return (
-    <a
+    <button
+      type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       className={[
         'sticky left-[95%] bottom-6 mr-6 z-10 cursor-pointer',
@@ -26,6 +27,6 @@ export default function ScrollTop() {
       aria-label="トップへ戻る"
     >
       <FontAwesomeIcon icon={faArrowUp} className="text-base text-white" />
-    </a>
+    </button>
   );
 }

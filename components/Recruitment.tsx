@@ -5,10 +5,7 @@ export default function Recruitment() {
   return (
     <section className="py-8 pb-16 md:pb-[4.5rem]">
       {/* full-bleed teal bg on mobile, rounded card on md+ */}
-      <Reveal
-        direction="up"
-        className="md:max-w-container md:mx-auto md:px-0 px-0"
-      >
+      <Reveal direction="up" className="md:max-w-container md:mx-auto md:px-0 px-0">
         <div className="bg-first py-16 md:rounded-2xl md:py-12 md:px-10">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1fr_max-content] lg:justify-center lg:items-center max-w-container mx-auto px-6 md:px-0">
             <div className="flex flex-col items-center md:items-start">
@@ -29,8 +26,8 @@ export default function Recruitment() {
               src="/assets/img/image-recruitment.png"
               alt="募集イメージ"
               width={230}
-              height={230}
-              className="w-[230px] justify-self-center"
+              height={228}
+              className="justify-self-center"
             />
           </div>
         </div>

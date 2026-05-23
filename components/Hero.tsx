@@ -1,18 +1,14 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectFade, Autoplay, Pagination } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
+import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 
-const slides = [
-  '/assets/img/image-1.jpg',
-  '/assets/img/image-2.jpg',
-  '/assets/img/image-3.jpg',
-];
+const slides = ['/assets/img/image-1.jpg', '/assets/img/image-2.jpg', '/assets/img/image-3.jpg'];
 
 export default function Hero() {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -32,7 +28,7 @@ export default function Hero() {
           sw.autoplay.stop();
         }
       },
-      { threshold: 0 }
+      { threshold: 0 },
     );
 
     observer.observe(el);
@@ -56,9 +52,9 @@ export default function Hero() {
         }}
         className="w-full h-full"
       >
-        {slides.map((src, i) => (
+        {slides.map((src) => (
           <SwiperSlide
-            key={i}
+            key={src}
             style={{
               backgroundImage: `url(${src})`,
               backgroundPosition: 'center',
