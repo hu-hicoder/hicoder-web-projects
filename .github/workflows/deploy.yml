@@ -3,6 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # 毎週月曜 00:00 UTC（= 月曜 09:00 JST）。
+    # GITHUB_TOKEN によるオートマージの push は deploy をトリガーしないため、
+    # Dependabot 週次実行（月曜 06:00 JST）+ オートマージ完了の数時間後にまとめてデプロイする。
+    - cron: "0 0 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -20,11 +25,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 11.2.2
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: pnpm
@@ -40,9 +43,10 @@ jobs:
       - name: Add .nojekyll
         run: touch out/.nojekyll
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: ./out
+          include-hidden-files: true
 
   deploy:
     needs: build
@@ -53,4 +57,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

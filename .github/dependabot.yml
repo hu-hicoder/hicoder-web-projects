@@ -5,6 +5,9 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: "Asia/Tokyo"
     open-pull-requests-limit: 10
     groups:
       # Bundle non-major updates into a single PR to reduce noise
@@ -18,6 +21,9 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: "Asia/Tokyo"
     groups:
       github-actions:
         update-types:
