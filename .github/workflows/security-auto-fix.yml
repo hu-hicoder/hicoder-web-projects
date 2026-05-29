@@ -54,25 +54,12 @@ jobs:
           BRANCH=security/audit-fix
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b "$BRANCH"
+          git checkout -B "$BRANCH"
           git add pnpm-workspace.yaml pnpm-lock.yaml
           git commit -m "fix(security): apply pnpm audit --fix=override"
           git push -f origin "$BRANCH"
-          gh pr view "$BRANCH" --json number > /dev/null 2>&1 \
-            || gh pr create --base main --head "$BRANCH" \
-                --title "fix(security): pnpm audit --fix=override による脆弱性修正" \
-                --body "$(cat <<'BODY'
-## 概要
-
-\`pnpm audit --fix=override\` を実行し、Dependabot が直せない transitive 依存の脆弱性を \`pnpm-workspace.yaml\` の \`overrides\` で修正しました。
-
-## 検証済み
-
-- ワークフロー内で \`pnpm build\` が成功していることを確認済み。
-
-## 注意
-
-このPRは \`GITHUB_TOKEN\` によって作成されているため、\`CI / build\` チェックが自動実行されません。
-管理者はワークフローの build ログを確認のうえ、手動でマージしてください。
-BODY
-)"
+          if [ "$(gh pr list --head "$BRANCH" --state open --json number --jq 'length')" = "0" ]; then
+            gh pr create --base main --head "$BRANCH" \
+              --title "fix(security): pnpm audit --fix=override による脆弱性修正" \
+              --body "pnpm audit --fix=override が overrides を自動追加しました。ワークフロー内で pnpm build 検証済み。GITHUB_TOKEN 作成のため CI/build チェックは自動実行されません。管理者がログを確認のうえ手動マージしてください。"
+          fi
