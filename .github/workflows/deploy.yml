@@ -3,6 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # 毎週月曜 00:00 UTC（= 月曜 09:00 JST）。
+    # GITHUB_TOKEN によるオートマージの push は deploy をトリガーしないため、
+    # Dependabot 週次実行（月曜 06:00 JST）+ オートマージ完了の数時間後にまとめてデプロイする。
+    - cron: "0 0 * * 1"
   workflow_dispatch:
 
 permissions:
