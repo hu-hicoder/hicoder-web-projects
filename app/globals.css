@@ -1,0 +1,116 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-body text-text-main text-md font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-title font-bold m-0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ul,
+  ol,
+  dl {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: top;
+  }
+}
+
+/* Scroll margin for fixed header */
+#about,
+#news,
+#faq,
+#contact {
+  scroll-margin-top: 4rem;
+}
+
+@media (min-width: 992px) {
+  #about,
+  #news,
+  #faq,
+  #contact {
+    scroll-margin-top: 5rem;
+  }
+}
+
+/* <350px special case */
+@media (max-width: 349px) {
+  .header-title-logo {
+    display: none;
+  }
+  .container-inner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Section title underline */
+.section-title::before {
+  content: "";
+  position: absolute;
+  bottom: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  width: 3rem;
+  height: 0.25rem;
+  background-color: hsl(187, 60%, 51%);
+  border-radius: 0.25rem;
+}
+
+/* Reveal fade animations */
+.reveal-item {
+  transition:
+    transform 0.8s,
+    opacity 0.8s;
+  opacity: 0;
+}
+.reveal-item.inview {
+  opacity: 1;
+  transform: none !important;
+}
+
+/* Swiper pagination override */
+.swiper-pagination-bullet-active {
+  background: #fff !important;
+}
+
+/* FAQ accordion grid transition */
+.faq-answer-grid {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s ease;
+}
+.faq-answer-grid.open {
+  grid-template-rows: 1fr;
+}
+
+/* Scrolltop */
+.scrolltop-visible {
+  opacity: 0.8;
+  visibility: visible;
+}
