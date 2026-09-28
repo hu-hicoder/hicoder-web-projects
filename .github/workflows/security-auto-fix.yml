@@ -1,0 +1,112 @@
+name: Security auto-fix
+
+on:
+  schedule:
+    # 毎週月曜 01:00 UTC（= 10:00 JST）。
+    # Dependabot が直せない transitive 依存の脆弱性を pnpm audit --fix=override で自動修正し PR を作成する。
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+# 手動実行と schedule の重複・再実行による同一ブランチ競合を防止
+concurrency:
+  group: security-auto-fix
+  cancel-in-progress: false
+
+jobs:
+  audit-fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Apply pnpm audit fixes
+        run: pnpm audit --fix=override || true
+
+      - name: Sync lockfile
+        run: pnpm install --no-frozen-lockfile
+
+      # lockfile の再正規化だけでは PR を作らない。
+      # overrides が書かれるマニフェスト（package.json / pnpm-workspace.yaml）の差分のみで判定。
+      - name: Detect override changes
+        id: diff
+        run: |
+          if git diff --quiet -- package.json pnpm-workspace.yaml; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Verify build
+        if: steps.diff.outputs.changed == 'true'
+        run: pnpm build
+
+      - name: Create or update PR
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BOT_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+          BASE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          BRANCH=security/audit-fix
+          git config user.name "github-actions[bot]"
+          git config user.email "$BOT_EMAIL"
+
+          # pnpm audit --fix=override は overrides を package.json に書くため、
+          # 3 点（package.json / pnpm-workspace.yaml / pnpm-lock.yaml）を退避してから
+          # ブランチ操作で作業ツリーを切り替える。
+          tmp=$(mktemp -d)
+          cp package.json pnpm-workspace.yaml pnpm-lock.yaml "$tmp/"
+          git reset --hard            # 作業ツリーを BASE_SHA に戻す（修正は $tmp に退避済み）
+
+          # 既存リモートブランチを remote-tracking ref に取得（無ければ無視）
+          git fetch origin "refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
+
+          if git rev-parse --verify --quiet "origin/$BRANCH" >/dev/null; then
+            # bot 以外がコミットしていたら上書きせず中断（人間の作業を破棄しない）
+            LAST_AUTHOR=$(git log -1 --format='%ae' "origin/$BRANCH")
+            if [ "$LAST_AUTHOR" != "$BOT_EMAIL" ]; then
+              echo "::error::origin/$BRANCH の最新コミットが bot 以外（$LAST_AUTHOR）です。手動確認のため中止します。"
+              exit 1
+            fi
+            # 一度 origin/$BRANCH を checkout して reflog に remote tip を残す
+            # （= --force-if-includes を成立させる前提）。その後 main 内容に作り直す。
+            git checkout -B "$BRANCH" "origin/$BRANCH"
+            git reset --hard "$BASE_SHA"
+            FORCE=true
+          else
+            git checkout -B "$BRANCH" "$BASE_SHA"
+            FORCE=false
+          fi
+
+          # 退避した修正を反映してコミット（package.json を必ず含める）
+          cp "$tmp/package.json" "$tmp/pnpm-workspace.yaml" "$tmp/pnpm-lock.yaml" ./
+          git add package.json pnpm-workspace.yaml pnpm-lock.yaml
+          git commit -m "fix(security): apply pnpm audit --fix=override"
+
+          # -f を廃止。lease で fetch〜push 間の他者 push を、
+          # includes で remote tip 未取り込みの巻き戻りを防ぐ。
+          if [ "$FORCE" = "true" ]; then
+            git push --force-with-lease --force-if-includes origin "$BRANCH"
+          else
+            git push origin "$BRANCH"
+          fi
+
+          if [ "$(gh pr list --head "$BRANCH" --state open --json number --jq 'length')" = "0" ]; then
+            gh pr create --base main --head "$BRANCH" \
+              --title "fix(security): pnpm audit --fix=override による脆弱性修正" \
+              --body "pnpm audit --fix=override が overrides を自動追加しました。ワークフロー内で pnpm build 検証済み。GITHUB_TOKEN 作成のため CI/build チェックは自動実行されません。管理者がログを確認のうえ手動マージしてください。"
+          fi
