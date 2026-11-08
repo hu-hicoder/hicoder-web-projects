@@ -24,8 +24,8 @@ importers:
         specifier: ^5.7.0
         version: 5.7.0(react@19.3.1)
       swiper:
-        specifier: ^12.2.0
-        version: 12.2.0
+        specifier: ^14.4.0
+        version: 14.4.0
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.6.5
@@ -659,8 +659,8 @@ packages:
       babel-plugin-macros:
         optional: true
 
-  swiper@12.2.0:
-    resolution: {integrity: sha512-K8uXsBZU6ME97Ia3xbBge8IRCnR1lOmIILzvY/jGVic7dSTQ530s3uO8RvXbPUtkkXLWIwmZLRPbtDxRWVAFdg==}
+  swiper@14.4.0:
+    resolution: {integrity: sha512-6axnAuBsttFJe0gwsM5tT203/Bts0vcI+FwIX6dqFE4pUFVW6qrdRprNFQVxOYMW7V0S6A/KIqJ6JaPpNN2MCw==}
     engines: {node: '>= 4.7.0'}
 
   tailwindcss@4.3.4:
@@ -1140,7 +1140,7 @@ snapshots:
       client-only: 0.0.1
       react: 19.3.1
 
-  swiper@12.2.0: {}
+  swiper@14.4.0: {}
 
   tailwindcss@4.3.4: {}
 
